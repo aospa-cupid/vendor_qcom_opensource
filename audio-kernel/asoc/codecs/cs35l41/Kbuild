@@ -89,8 +89,23 @@ CDEFINES +=	-DANI_LITTLE_BYTE_ENDIAN \
 		-DPTT_SOCK_SVC_ENABLE \
 		-Wall\
 		-Werror\
-		-D__linux__ \
-		-DCONFIG_TARGET_PRODUCT_CUPID
+		-D__linux__
+
+ifneq (,$(filter $(TARGET_PRODUCT), dagda zeus))
+	CDEFINES += -DCONFIG_TARGET_PRODUCT_ZEUS
+endif
+
+ifneq (,$(filter $(TARGET_PRODUCT), cupid))
+	CDEFINES += -DCONFIG_TARGET_PRODUCT_CUPID
+endif
+
+ifneq (,$(filter $(TARGET_PRODUCT), taranis thor))
+	CDEFINES += -DCONFIG_TARGET_PRODUCT_THOR
+endif
+
+ifneq (,$(filter $(TARGET_PRODUCT), diting))
+        CDEFINES += -DCONFIG_TARGET_PRODUCT_DITING
+endif
 
 KBUILD_CPPFLAGS += $(CDEFINES)
 
